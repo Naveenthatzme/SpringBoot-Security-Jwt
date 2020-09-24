@@ -1,0 +1,66 @@
+package com.app.ServiceImpl;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
+
+import com.app.Repo.UserRepository;
+import com.app.Service.IUserService;
+import com.app.model.User;
+
+@Service
+public class UserServiceImpl implements IUserService,UserDetailsService{
+
+
+	@Autowired
+	private UserRepository repo;
+	
+	@Autowired
+	private BCryptPasswordEncoder encoder;
+	
+	@Override
+	public Integer save(User user) {
+		
+		String pwd=user.getPwd();
+		pwd=encoder.encode(pwd);
+		user.setPwd(pwd);
+		return repo.save(user).getId();
+	}
+	
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+	
+		//1.get model class user based on username
+			
+			User user= repo.findByUsername(username);
+			
+			//Roles to set<GA>
+			Set<GrantedAuthority> auth=new HashSet<>();
+			
+			
+			List<String> roles=user.getRoles();
+			for(String role:roles)
+			{
+				
+				auth.add(new SimpleGrantedAuthority(role));
+			}
+			
+		//2.return springframework user
+			
+			org.springframework.security.core.userdetails.User usr=new  org.springframework.security.core.userdetails.User
+					
+					(user.getUsername(), user.getPwd(), auth);
+			
+		
+		return usr;
+	}
+}

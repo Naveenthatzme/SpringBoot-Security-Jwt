@@ -1,0 +1,22 @@
+package com.app.ServiceImpl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.app.Repo.UserRepository;
+import com.app.Service.IUserService;
+import com.app.model.User;
+
+@Service
+public class UserServiceImpl implements IUserService{
+
+
+	@Autowired
+	private UserRepository repo;
+	
+	@Override
+	public Integer save(User user) {
+		// TODO Auto-generated method stub
+		return repo.save(user).getId();
+	}
+}

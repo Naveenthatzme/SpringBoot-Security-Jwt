@@ -1,0 +1,23 @@
+package com.example.demo.model;
+
+import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Data
+@Entity
+@Table(name="users_tab")
+public class User {
+
+	
+	private Integer id;
+	
+	private String userName;
+	
+	private String userMail;
+	
+	private String userpwd;
+	
+	private List<String> roles;
+}

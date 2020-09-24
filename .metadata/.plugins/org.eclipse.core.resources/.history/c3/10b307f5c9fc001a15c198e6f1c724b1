@@ -1,0 +1,31 @@
+package com.app.ServiceImpl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+
+import com.app.Repo.UserRepository;
+import com.app.Service.IUserService;
+import com.app.model.User;
+
+@Service
+public class UserServiceImpl implements IUserService,UserDetailsService{
+
+
+	@Autowired
+	private UserRepository repo;
+	
+	@Override
+	public Integer save(User user) {
+		
+		return repo.save(user).getId();
+	}
+	
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+}

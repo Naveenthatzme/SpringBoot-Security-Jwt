@@ -1,0 +1,5 @@
+package com.app.Error;
+
+public class InvalidAuthenticationEntryPoint {
+
+}

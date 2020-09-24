@@ -1,0 +1,14 @@
+package com.app.ServiceImpl;
+
+import com.app.Service.IUserService;
+import com.app.model.User;
+
+public class UserServiceImpl implements IUserService{
+
+	
+	@Override
+	public Integer save(User user) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+}

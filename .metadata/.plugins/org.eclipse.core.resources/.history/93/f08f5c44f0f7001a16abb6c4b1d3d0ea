@@ -1,0 +1,21 @@
+package com.example.demo.ServiceImpl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.demo.Repository.UserRepository;
+import com.example.demo.Service.IUserService;
+import com.example.demo.model.User;
+
+@Service//for Auto-Transaction
+public class IUserServiceImpl implements IUserService{
+
+	@Autowired
+	private UserRepository repo;
+	
+	@Override
+	public Integer saveuser(User user) {
+		
+		return null;
+	}
+}

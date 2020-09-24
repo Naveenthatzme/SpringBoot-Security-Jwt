@@ -1,0 +1,26 @@
+package com.app;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+public class TestClass {
+
+	public static void main(String[] args) {
+
+		List<String> l= new ArrayList<>();
+				l.add("avinash");
+				l.add("naveen");
+				l.add("nani");
+				l.add("sai");
+	System.out.println(l);
+		Iterator itr= l.iterator();
+				while (itr.hasNext()) {
+					itr.next();
+						System.out.println(itr);
+					
+					
+				}
+	
+	}
+}
